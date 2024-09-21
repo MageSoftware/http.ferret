@@ -16,7 +16,6 @@ ENV PATH="/opt/gradle/gradle-${GRADLE_VERSION}/bin:${PATH}"
 COPY ./build.gradle ./build.gradle
 COPY ./settings.gradle ./settings.gradle
 COPY ./src ./src
-RUN chmod +x ./gradlew
 RUN gradle build -Dquarkus.native.enabled=true
 
 ## Stage 2 : create the docker final image
