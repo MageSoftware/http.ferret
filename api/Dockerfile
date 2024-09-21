@@ -1,12 +1,19 @@
 ## Stage 1 : build with gradle builder image with native capabilities
 FROM ghcr.io/graalvm/native-image:ol9-java17-22.3.2 AS build
-COPY ./gradlew ./gradlew
-## COPY ./gradle ./gradle
+
+# Instalar Gradle manualmente
+ENV GRADLE_VERSION 8.3
+RUN curl -sL https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip -o gradle.zip \
+    && unzip gradle.zip -d /opt/gradle \
+    && rm gradle.zip
+
+ENV PATH="/opt/gradle/gradle-${GRADLE_VERSION}/bin:${PATH}"
+
 COPY ./build.gradle ./build.gradle
 COPY ./settings.gradle ./settings.gradle
 COPY ./src ./src
 RUN chmod +x ./gradlew
-RUN ./gradlew build -Dquarkus.native.enabled=true
+RUN gradle build -Dquarkus.native.enabled=true
 
 ## Stage 2 : create the docker final image
 FROM registry.access.redhat.com/ubi9-minimal:9.2
