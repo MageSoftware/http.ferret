@@ -5,6 +5,7 @@ COPY ./gradlew ./gradlew
 COPY ./build.gradle ./build.gradle
 COPY ./settings.gradle ./settings.gradle
 COPY ./src ./src
+RUN chmod +x ./gradlew
 RUN ./gradlew build -Dquarkus.native.enabled=true
 
 ## Stage 2 : create the docker final image
