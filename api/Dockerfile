@@ -1,7 +1,11 @@
 ## Stage 1 : build with gradle builder image with native capabilities
 FROM ghcr.io/graalvm/native-image:ol9-java17-22.3.2 AS build
 
-# Instalar Gradle manualmente
+# Install curl, unzip
+RUN microdnf install -y curl unzip \
+    && microdnf clean all
+
+# Install Gradle
 ENV GRADLE_VERSION 8.3
 RUN curl -sL https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip -o gradle.zip \
     && unzip gradle.zip -d /opt/gradle \
