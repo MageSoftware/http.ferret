@@ -1,7 +1,7 @@
 ## Stage 1 : build with gradle builder image with native capabilities
 FROM ghcr.io/graalvm/native-image:ol9-java17-22.3.2 AS build
 COPY ./gradlew ./gradlew
-COPY ./gradle ./gradle
+## COPY ./gradle ./gradle
 COPY ./build.gradle ./build.gradle
 COPY ./settings.gradle ./settings.gradle
 COPY ./src ./src
