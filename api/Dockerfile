@@ -2,7 +2,7 @@
 FROM ghcr.io/graalvm/native-image:ol9-java17-22.3.2 AS build
 
 # Install curl, unzip
-RUN microdnf install -y curl unzip \
+RUN microdnf install -y curl unzip findutils \
     && microdnf clean all
 
 # Install Gradle
