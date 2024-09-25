@@ -1,13 +1,13 @@
-ext {
-    quarkusPlatformGroupId = 'io.quarkus.platform'
-    quarkusPlatformArtifactId = 'quarkus-bom'
-    quarkusPlatformVersion = '3.14.0'
-}
-
 plugins {
     id 'org.jetbrains.kotlin.jvm' version "2.0.0"
     id "org.jetbrains.kotlin.plugin.allopen" version "2.0.0"
     id 'io.quarkus'
+}
+
+ext {
+    quarkusPlatformGroupId = 'io.quarkus.platform'
+    quarkusPlatformArtifactId = 'quarkus-bom'
+    quarkusPlatformVersion = '3.14.0'
 }
 
 repositories {
