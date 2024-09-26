@@ -16,7 +16,7 @@ ENV PATH="/opt/gradle/gradle-${GRADLE_VERSION}/bin:${PATH}"
 COPY ./build.gradle ./build.gradle
 COPY ./settings.gradle ./settings.gradle
 COPY ./src ./src
-RUN gradle build -Dquarkus.native.enabled=true
+RUN gradle build -Dquarkus.native.enabled=true -Dquarkus.package.jar.enabled=false
 
 ## Stage 2 : create the docker final image
 FROM registry.access.redhat.com/ubi9-minimal:9.2
