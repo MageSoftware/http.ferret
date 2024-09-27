@@ -12,13 +12,13 @@ import jakarta.persistence.Id
 @RegisterForReflection
 data class FerretStatus(
     @Id
-    private val code: Int,
+    private val code: Int = 0,
 
     @Column
-    private val title: String,
+    private val title: String = "",
 
     @Column
-    private val url: String,
+    private val url: String = "",
 ) : PanacheEntityBase {
 
     companion object: PanacheCompanion<FerretStatus> {
