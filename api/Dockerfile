@@ -17,19 +17,21 @@ COPY ./build.gradle ./build.gradle
 COPY ./settings.gradle ./settings.gradle
 COPY ./src ./src
 RUN gradle build -Dquarkus.native.enabled=true -Dquarkus.package.jar.enabled=false
+RUN ls -la /app/build/httpferret-1.0.0-native-image-source-jar/
 
 ## Stage 2 : create the docker final image
 FROM registry.access.redhat.com/ubi9-minimal:9.2
 
-RUN ls
 WORKDIR /work
-COPY --from=build /app/build/httpferret-1.0.0-native-image-source-jar/httpferret-1.0.0-runner /work/application
+COPY --from=build /app/build/httpferret-1.0.0-native-image-source-jar/*-runner /work
 
 # set up permissions for user `1001`
-RUN chmod 775 /work /work/application \
+RUN chmod 775 /work \
   && chown -R 1001 /work \
   && chmod -R "g+rwX" /work \
   && chown -R 1001:root /work
+
+RUN ls -la /work
 
 EXPOSE 8080
 USER 1001
