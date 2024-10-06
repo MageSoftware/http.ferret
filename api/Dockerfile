@@ -22,8 +22,8 @@ RUN gradle build -Dquarkus.native.enabled=true -Dquarkus.package.jar.enabled=fal
 FROM registry.access.redhat.com/ubi9-minimal:9.2
 
 RUN ls
-WORKDIR /work/
-COPY --from=build /app/build/httpferret-1.0.0-native-image-source-jar/*-runner /work/application
+WORKDIR /work
+COPY --from=build /app/build/httpferret-1.0.0-native-image-source-jar/httpferret-1.0.0-runner /work/application
 
 # set up permissions for user `1001`
 RUN chmod 775 /work /work/application \
