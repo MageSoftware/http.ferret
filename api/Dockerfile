@@ -23,7 +23,7 @@ FROM registry.access.redhat.com/ubi9-minimal:9.2
 
 RUN ls
 WORKDIR /work/
-COPY --from=build /build/libs/*-runner /work/application
+COPY --from=build /app/build/httpferret-1.0.0-native-image-source-jar/*-runner /work/application
 
 # set up permissions for user `1001`
 RUN chmod 775 /work /work/application \
