@@ -21,6 +21,7 @@ RUN gradle build -Dquarkus.native.enabled=true -Dquarkus.package.jar.enabled=fal
 ## Stage 2 : create the docker final image
 FROM registry.access.redhat.com/ubi9-minimal:9.2
 
+RUN ls
 WORKDIR /work/
 COPY --from=build /home/gradle/project/build/libs/*-runner /work/application
 
